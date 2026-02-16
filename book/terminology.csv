@@ -14,3 +14,10 @@ grammar,文法,为了和“语法”区分，选择不同的翻译,
 term,词项,依练琪灏的 MLTT 讲义，翻译为“词项”,
 kind,种类,每次出现的时候都要加上#term[]以提供视觉辅助,"A kind can be thought of as the “type of a type.”"
 universe,宇宙,,"The language’s grammar allows expressions that can be interpreted at different “levels” or “universes.”"
+type reconstruction,类型重建,也就是类型推断,
+type inference,类型推断,,"...a related and historically significant challenge is **type reconstruction**, more commonly known as **type inference**"
+bidirectional type checking,双向类型检查,,"As a result, many modern statically-typed languages have converged on a practical and elegant middle ground: **bidirectional type checking**."
+generalized algebraic data type,广义代数数据类型,,
+higher-rank polymorphism,高秩多态,,"...higher-rank polymorphism (passing polymorphic functions as arguments)..."
+Curry-Howard isomorphism,柯里-霍华德同构,,
+morphism,态射,,
