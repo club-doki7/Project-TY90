@@ -1,4 +1,16 @@
-英文,词性,翻译,注释,例句,
-syntax,名词,语法,,
-grammar,名词,文法,为了和“语法”区分，选择不同的翻译,
-term,名词,词项,依练琪灏的 MLTT 讲义，翻译为“词项”,
+英文,翻译,注释,例句,
+lambda calculus,λ 演算,,"Any discussion of type systems starts with the lambda calculus, a formal system developed by Alonzo Church in the 1930s to express computation."
+judgement,判断,,"A judgment is an assertion that a piece of code has a certain property."
+typing judgement,类型判断,,"The most common kind of judgment you will encounter is a typing judgment, which asserts that a given expression has a particular type within a specific context."
+turnstile,十字转门,,"We write this formally using a “turnstile” symbol ⊢."
+inference rule,推理规则,,"Typing judgments are derived using inference rules."
+context,语境,比什么“上下文”好听多了,"...a given expression has a particular type within a specific context."
+axiom,公理,,"If a rule has no premises, it is an axiom, a self-evident truth that requires no prior proof to hold."
+ground types,基础类型,,
+well-typed,类型良定的,,"...thereby proving it is well-typed."
+elimination,消去,,"The rule, often called “application” or “elimination for functions”"
+syntax,语法,,
+grammar,文法,为了和“语法”区分，选择不同的翻译,
+term,词项,依练琪灏的 MLTT 讲义，翻译为“词项”,
+kind,种类,每次出现的时候都要加上#term[]以提供视觉辅助,"A kind can be thought of as the “type of a type.”"
+universe,宇宙,,"The language’s grammar allows expressions that can be interpreted at different “levels” or “universes.”"
