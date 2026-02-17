@@ -21,3 +21,5 @@ generalized algebraic data type,广义代数数据类型,,
 higher-rank polymorphism,高秩多态,,"...higher-rank polymorphism (passing polymorphic functions as arguments)..."
 Curry-Howard isomorphism,柯里-霍华德同构,,
 morphism,态射,,
+parameter,参数,,
+argument,实参,,

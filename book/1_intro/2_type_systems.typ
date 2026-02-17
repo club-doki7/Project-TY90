@@ -8,11 +8,7 @@
 
 #linebreak()
 
-⚠️ 注意：本文为早期草稿，内容不完且有措误，且#text(tracking: -0.15em)[排版]质量差。
-
-⚠️ Note: this is an early draft. It's known to be incomplet and incorrekt, and it has lots of b#text(tracking: -0.15em)[ad] fo#text(tracking: -0.15em)[rm]atting.
-
-#linebreak()
+#bad-formatting
 
 那么，为什么要构建类型系统呢？答案显而易见：因为类型系统很棒，在理论上很有趣。但其次，因为它们确实很有用。
 
@@ -122,7 +118,7 @@ $
   (Gamma tack f med x : "Bool")
 $
 
-这个嵌套结构被称作#term[推导树 (derivation tree)] 或#term[推理树 (inference tree)]。树中的每个节点都对应于一条推理规则的一次应用。这棵树可视化地展示了类型检查如何从基本事实（语境中变量的类型）开始，逐步应用规则，最终得到结论——也就是整个复杂表达式的类型。在这个例子中，树根是类型判断 $Gamma tack f med x : "Bool"$，而它的两个子节点则是关于 $f$ 和 $x$ 的类型判断，而它们又是各自通过 T-Var 得出的。这一过程可以扩展到更大的程序，推导树会不断增长，以反映程序的结构和类型信息的逻辑流。
+这个嵌套结构被称作#term[推导树 (derivation tree)] 或#term[推理树 (inference tree)]。树中的每个节点都对应于一条推理规则的一次应用。这棵树可视化地展示了类型检查如何从基本事实（语境中变量的类型）开始，逐步运用规则，最终得到结论——也就是整个复杂表达式的类型。在这个例子中，树根是类型判断 $Gamma tack f med x : "Bool"$，而它的两个子节点则是关于 $f$ 和 $x$ 的类型判断，而它们又是各自通过 T-Var 得出的。这一过程可以扩展到更大的程序，推导树会不断增长，以反映程序的结构和类型信息的逻辑流。
 
 == 词项和类型
 
