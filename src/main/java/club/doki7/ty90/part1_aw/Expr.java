@@ -1,7 +1,8 @@
 package club.doki7.ty90.part1_aw;
 
 import club.doki7.ty90.ann.PreferStaticMethod;
-import club.doki7.ty90.util.ImmSeq;
+
+import java.util.List;
 
 @PreferStaticMethod({"Var", "App", "Abs", "Let", "Lit", "Tuple"})
 public sealed interface Expr {
@@ -11,5 +12,5 @@ public sealed interface Expr {
     record Let(String name, Expr value, Expr body) implements Expr {}
     record LitInt(int value) implements Expr {}
     record LitString(String value) implements Expr {}
-    record Tuple(ImmSeq<Expr> elements) implements Expr {}
+    record Tuple(List<Expr> elements) implements Expr {}
 }

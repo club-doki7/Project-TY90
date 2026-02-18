@@ -1,9 +1,10 @@
 package club.doki7.ty90.part1_aw;
 
-import club.doki7.ty90.util.ImmSeq;
 import org.jetbrains.annotations.NotNull;
 
-public record TypeScheme(ImmSeq<Type.Var> vars, Type type) {
+import java.util.List;
+
+public record TypeScheme(List<Type.Var> vars, Type type) {
     @Override
     public @NotNull String toString() {
         if (vars.isEmpty()) {

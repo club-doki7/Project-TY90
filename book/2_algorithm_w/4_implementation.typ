@@ -8,7 +8,7 @@
 #linebreak()
 #bad-formatting
 
-#term[算法 W (Algorithm W)] 是函数式语言中最早也最优雅（就当时而言）的类型推断方案之一，它为 由 Robin Milner 于 1978 年开发，为推断#link("https://en.wikipedia.org/wiki/Hindley%E2%80%93Milner_type_system")[#term[HM (Hindley-Milner) 类型系统]]中最一般的类型提供了一种#term[健全 (sound)] 且#term[完备 (complete)] 的方法。本节会给出一个算法 W 的 Java 实现，展示如何将数学基础翻译成能处理 $lambda$ 抽象、函数应用、`let` 多态和复杂#term[合一 (unification)] 的实际代码。
+#term[算法 W (Algorithm W)] 是函数式语言中最早也最优雅（就当时而言）的类型推断方案之一，它由 Robin Milner 于 1978 年开发，为推断#link("https://en.wikipedia.org/wiki/Hindley%E2%80%93Milner_type_system")[#term[HM (Hindley-Milner) 类型系统]]中最一般的类型提供了一种#term[健全 (sound)] 且#term[完备 (complete)] 的方法。本节会给出一个算法 W 的 Java 实现，展示如何将数学基础翻译成能处理 $lambda$ 抽象、函数应用、`let` 多态和复杂#term[合一 (unification)] 的实际代码。
 
 算法 W 的核心思想在于其通过*生成约束*和*执行合一*来进行类型推断的系统性方法：不是用局部性的分析来确定类型，而是生成类型变量、收集约束并运用合一求解约束，从而总揽全局。这种方法确保了类型推断总是能找到最通用的类型，这一特性对于在函数式语言中支持多态性至关重要。
 
@@ -75,7 +75,7 @@ $
 `let` 多态规则 #t-let 允许泛化 `let` 绑定引入的变量：
 
 $
-  (Gamma tack e_1 : tau_1 wide sigma = "gen"(Gamma, tau) wide Gamma, x : sigma tack e_2 : tau_2)
+  (Gamma tack e_1 : tau_1 wide sigma = "gen"(Gamma, tau_1) wide Gamma, x : sigma tack e_2 : tau_2)
   /
   (Gamma tack #[`let`] x = e_1 #[`in`] e_2 : tau_2)
   quad
@@ -97,9 +97,9 @@ $
 
 == 抽象语法树
 
-我们的实现使用密封接口来模拟 ADT，对表达式和类型进行细致的建模。简洁起见，用于美化输出的 `toString` 方法已略去；除非经由显式 `@Nullable` 显式声明，引用类型的字段和参数总是非空（不为 `null`）的。
+我们的实现使用密封接口来模拟 ADT，对表达式和类型进行细致的建模。简洁起见，用于美化输出的 `toString` 方法已略去；除非经由 `@Nullable` 显式声明，引用类型的字段和参数总是非空（不为 `null`）的；类型为 `List` 的字段都视为不可变列表，可变列表则会使用 `ArrayList` 类型显式指明。
 
-表达式的抽象语法树 `Expr` 描述了语言的语法结构。变量 `Var` 和函数抽象 `Abs` 直接对应于 $lambda$ 演算。函数抽象 `App` 通过 $beta$-归约驱动计算。`Let` 构造引入能进行多态泛化的局部绑定。字面量 `LitInt`、`LitString` 和元组 `Tuple` 为实际编程提供了具体的数据类型。
+表达式的抽象语法树 `Expr` 描述了语言的语法结构。变量 `Var` 和函数抽象 `Abs` 直接对应于 $lambda$ 演算。函数应用 `App` 通过 $beta$-归约驱动计算。`Let` 构造引入能进行多态泛化的局部绑定。字面量 `LitInt`、`LitBool` 和元组 `Tuple` 为实际编程提供了具体的数据类型。
 
 ```java
 sealed interface Expr {
@@ -108,20 +108,20 @@ sealed interface Expr {
     record Abs(String paramName, Expr body) implements Expr {}
     record Let(String name, Expr value, Expr body) implements Expr {}
     record LitInt(int value) implements Expr {}
-    record LitString(String value) implements Expr {}
+    record LitBool(boolean value) implements Expr {}
     record Tuple(List<Expr> elements) implements Expr {}
 }
 ```
 
 #colbreak()
 
-类型的抽象语法树 `Type` 描述了表达式可能具有的类型。类型变量 `Type.Var` 在类型推断期间被作为占位符，在合一过程中被实例化为具体类型。箭头类型 `Type.Arrow` 表示函数类型。枚举 `Type.Int` 和 `Type.Bool` 提供了基础类型，而元组类型 `Type.Tuple` 支持了结构化数据。这些类型是是递归定义的，因而我们可以表达任意复杂的类型结构——从简单的整数到操作其他函数的高阶函数。
+类型的抽象语法树 `Type` 描述了表达式可能具有的类型。类型变量 `Type.Var` 在类型推断期间被作为占位符，在合一过程中被实例化为具体类型。箭头类型 `Type.Arrow` 表示函数类型。单例枚举 `Type.Int` 和 `Type.Bool` 提供了基础类型，而元组类型 `Type.Tuple` 支持了结构化数据。这些类型是是递归定义的，因而我们可以表达任意复杂的类型结构——从简单的整数到操作其他函数的高阶函数。
 
 ```java
 sealed interface Type {
     record Var(Greek greek, int id) implements Type {}
     record Arrow(Type from, Type to) implements Type {}
-    record Tuple(ImmSeq<Type> elements) implements Type {}
+    record Tuple(List<Type> elements) implements Type {}
     enum Int implements Type { INSTANCE }
     enum Bool implements Type { INSTANCE }
 

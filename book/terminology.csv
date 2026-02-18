@@ -6,7 +6,6 @@ turnstile,十字转门,,"We write this formally using a “turnstile” symbol �
 inference rule,推理规则,,"Typing judgments are derived using inference rules."
 context,语境,比什么“上下文”好听多了,"...a given expression has a particular type within a specific context."
 axiom,公理,,"If a rule has no premises, it is an axiom, a self-evident truth that requires no prior proof to hold."
-ground types,基础类型,,
 well-typed,类型良定的,,"...thereby proving it is well-typed."
 elimination,消去,,"The rule, often called “application” or “elimination for functions”"
 syntax,语法,,
