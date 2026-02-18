@@ -23,3 +23,12 @@ Curry-Howard isomorphism,柯里-霍华德同构,,
 morphism,态射,,
 parameter,参数,,
 argument,实参,,
+algorithm W,算法 W,,"Algorithm W represents one of the earliest and elegant (for its time) solutions to the type inference problem in functional programming languages."
+unification,合一,,"The core insight of Algorithm W lies in its systematic approach to type inference through constraint generation and unification."
+monomorphic,单态的,,
+type scheme,类型概型,,
+instantiate,实例化,,"These can be instantiated with different concrete types."
+generalisation,泛化,,"Generalization, which turns a monotype into a polytype by quantifying over type variables not present in the environment."
+monotype,单态类型,,
+polytype,多态类型,,
+occurs check,出现检查,,

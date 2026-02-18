@@ -18,6 +18,7 @@
     features: (liga: 0,  dlig: 0, clig: 0, calt: 0, locl: 0)
   )
   show raw.where(block: true): set block(breakable: false)
+  show raw.where(block: true): it => pad(left: 2em, it)
   show math.equation: set text(font: ("Libertinus Math", "Zhuque Fangsong (technical preview)"))
   show math.equation.where(block: true): set block(breakable: false)
 
