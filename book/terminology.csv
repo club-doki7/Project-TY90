@@ -10,8 +10,8 @@ well-typed,类型良定的,,"...thereby proving it is well-typed."
 elimination,消去,,"The rule, often called “application” or “elimination for functions”"
 syntax,语法,,
 grammar,文法,为了和“语法”区分，选择不同的翻译,
-term,词项,依练琪灏的 MLTT 讲义，翻译为“词项”,
-kind,种类,每次出现的时候都要加上#term[]以提供视觉辅助,"A kind can be thought of as the “type of a type.”"
+term,词项,依练琪灏的 MLTT 讲义，翻译为“词项”；如果 term 前面有形容词，则把“词”字隐去,
+kind,种类,每次出现的时候都要加上#tm[]以提供视觉辅助,"A kind can be thought of as the “type of a type.”"
 universe,宇宙,,"The language’s grammar allows expressions that can be interpreted at different “levels” or “universes.”"
 type reconstruction,类型重建,也就是类型推断,
 type inference,类型推断,,"...a related and historically significant challenge is **type reconstruction**, more commonly known as **type inference**"
